@@ -18,15 +18,21 @@ namespace Task1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Form(Number model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Success");
+            }
+            return View(model);
+        }
+
+
+        public IActionResult Success()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
